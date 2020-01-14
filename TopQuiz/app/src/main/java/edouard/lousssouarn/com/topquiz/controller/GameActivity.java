@@ -1,10 +1,13 @@
 package edouard.lousssouarn.com.topquiz.controller;
-
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Arrays;
 
@@ -12,15 +15,19 @@ import edouard.lousssouarn.com.topquiz.R;
 import edouard.lousssouarn.com.topquiz.model.Question;
 import edouard.lousssouarn.com.topquiz.model.QuestionBank;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements View.OnClickListener{
 
-   private TextView gQuestionText;
-   private Button gAnswer1Button;
-   private Button gAnswer2Button;
-   private Button gAnswer3Button;
-   private Button gAnswer4Button;
+   private TextView mQuestionTextView;
+   private Button mAnswer1Button;
+   private Button mAnswer2Button;
+   private Button mAnswer3Button;
+   private Button mAnswer4Button;
 
    private QuestionBank mQuestionBank;
+   private Question mCurrentQuestion;
+
+   private int mScore;
+   private int mNumberOfQuestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +36,78 @@ public class GameActivity extends AppCompatActivity {
 
         mQuestionBank = this.generateQuestions();
 
-        gQuestionText = (TextView) findViewById(R.id.activity_game_question_text);
-        gAnswer1Button = (Button) findViewById(R.id.activity_game_answer1_btn);
-        gAnswer2Button = (Button) findViewById(R.id.activity_game_answer2_btn);
-        gAnswer3Button = (Button) findViewById(R.id.activity_game_answer3_btn);
-        gAnswer4Button = (Button) findViewById(R.id.activity_game_answer4_btn);
+        mScore = 0;
+
+        mNumberOfQuestions = 4;
+
+        //Branchement des Widgets
+        mQuestionTextView = (TextView) findViewById(R.id.activity_game_question_text);
+        mAnswer1Button = (Button) findViewById(R.id.activity_game_answer1_btn);
+        mAnswer2Button= (Button) findViewById(R.id.activity_game_answer2_btn);
+        mAnswer3Button = (Button) findViewById(R.id.activity_game_answer3_btn);
+        mAnswer4Button = (Button) findViewById(R.id.activity_game_answer4_btn);
+
+        //Use the tag property to 'name' the buttons
+        mAnswer1Button.setTag(0);
+        mAnswer2Button.setTag(1);
+        mAnswer3Button.setTag(2);
+        mAnswer4Button.setTag(3);
+
+        mAnswer1Button.setOnClickListener(this);
+        mAnswer2Button.setOnClickListener(this);
+        mAnswer3Button.setOnClickListener(this);
+        mAnswer4Button.setOnClickListener(this);
+
+        mCurrentQuestion = mQuestionBank.getQuestion();
+        this.displayQuestion(mCurrentQuestion);
+    }
+
+    @Override
+    public void onClick(View v) {
+        int responseIndex = (int) v.getTag();
+
+        if (responseIndex == mCurrentQuestion.getAnswerIndex()) {
+            //good answer
+            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
+            mScore++;
+        }else{
+            //wrong answer
+            Toast.makeText(this, "Wrong answer !", Toast.LENGTH_SHORT).show();
+        }
+        // If this is the last question, ends the game.
+        // Else, display the next question.
+        if (--mNumberOfQuestions == 0) {
+            // End the game
+            endGame();
+        } else {
+            mCurrentQuestion = mQuestionBank.getQuestion();
+            displayQuestion(mCurrentQuestion);
+        }
+    }
+
+    private void endGame() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Well done!")
+                .setMessage("Your score is " + mScore)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .create()
+                .show();
+    }
+
+    private void displayQuestion(final Question question){
+        mQuestionTextView.setText(question.getQuestion());
+        mAnswer1Button.setText(question.getChoiceList().get(0));
+        mAnswer2Button.setText(question.getChoiceList().get(1));
+        mAnswer3Button.setText(question.getChoiceList().get(2));
+        mAnswer4Button.setText(question.getChoiceList().get(3));
+
+
     }
 
     private QuestionBank generateQuestions() {
