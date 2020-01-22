@@ -1,5 +1,6 @@
 package edouard.lousssouarn.com.topquiz.model;
 
+import java.util.Collections;
 import java.util.List;
 
 public class QuestionBank {
@@ -7,9 +8,10 @@ public class QuestionBank {
     private int mNextQuestionIndex;
 
     public QuestionBank(List<Question> questionList) {
-        // Shuffle the question list before storing it
-        //Mélangez la liste de questions avant de la stocker
         mQuestionList = questionList;
+
+        //Mélangez la liste de questions avant de la stocker
+       Collections.shuffle(mQuestionList);
 
         mNextQuestionIndex = 0;
     }
