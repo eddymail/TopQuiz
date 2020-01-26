@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
    private User mUser;
 
    public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
+   public static final int SCORE_ACTIVITY_REQUEST_CODE = 26;
    private SharedPreferences mPreferences;
 
    public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         mPlayButton.setEnabled(false);
 
+        greetUser();
+
         mNameInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -69,19 +72,30 @@ public class MainActivity extends AppCompatActivity {
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // The user just clicked
                 String firstname = mNameInput.getText().toString();
                 mUser.setFirstname(firstname);
 
-
                 mPreferences.edit().putString(PREF_KEY_FIRSTNAME, mUser.getFirstname()).apply();
 
-                // The user just clicked
                 Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
                 startActivityForResult(gameActivityIntent,GAME_ACTIVITY_REQUEST_CODE );
+
+            }
+
+        });
+
+        mScoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent scoreActivityIntent = new Intent(MainActivity.this, ScoreActivity.class);
+                startActivity(scoreActivityIntent);
             }
         });
 
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -108,6 +122,8 @@ public class MainActivity extends AppCompatActivity {
             mNameInput.setText(firstname);
             mNameInput.setSelection(firstname.length());
             mPlayButton.setEnabled(true);
+            mScoreButton.setVisibility(View.VISIBLE); //To set visible
+
         }
     }
     @Override
