@@ -23,11 +23,13 @@ public class ScoreActivity extends AppCompatActivity {
     private TextView mFourthPlayer;
     private TextView mFifthPlayer;
 
-   /*private SharedPreferences mPreferences;
+    private Ranking mRanking;
 
-   String userName = mPreferences.getString(PREF_KEY_FIRSTNAME, null);
-   int userScore = mPreferences.getInt(PREF_KEY_SCORE, 0);
-   */
+
+    private SharedPreferences mPreferences;
+    String userName = mPreferences.getString(PREF_KEY_FIRSTNAME, null);
+    int userScore = mPreferences.getInt(PREF_KEY_SCORE, 0);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +52,11 @@ public class ScoreActivity extends AppCompatActivity {
          */
     }
 
+
    /* private Ranking generateRanking () {
 
-        Ranking firstInTheRanking = new Ranking(Maps.asMap(userName,userScore),0);
-        je cherche un equivalant à Arrays.asList pour passer le nom et le score sauvegarder comme paramètre ?
+        Ranking (Maps.asMap(userName,userScore),0);
+        je cherche un equivalant à Arrays.asList pour passer le nom et le score sauvegardé comme paramètre ?
         j'ai aussi essayé ça:
         Ranking firstInTheRanking = new Ranking(userScoreList.getUserScoreList().put(userName , userScore));
 
