@@ -145,6 +145,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void displayQuestion(final Question question){
+        //Set the text for the question text view and the four buttons.
         mQuestionTextView.setText(question.getQuestion());
         mAnswer1Button.setText(question.getChoiceList().get(0));
         mAnswer2Button.setText(question.getChoiceList().get(1));
