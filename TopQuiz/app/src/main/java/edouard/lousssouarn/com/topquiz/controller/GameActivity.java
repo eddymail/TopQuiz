@@ -20,23 +20,23 @@ import edouard.lousssouarn.com.topquiz.model.QuestionBank;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
 
-   private TextView mQuestionTextView;
-   private Button mAnswer1Button;
-   private Button mAnswer2Button;
-   private Button mAnswer3Button;
-   private Button mAnswer4Button;
+    private TextView mQuestionTextView;
+    private Button mAnswer1Button;
+    private Button mAnswer2Button;
+    private Button mAnswer3Button;
+    private Button mAnswer4Button;
 
-   private QuestionBank mQuestionBank;
-   private Question mCurrentQuestion;
+    private QuestionBank mQuestionBank;
+    private Question mCurrentQuestion;
 
-   private int mScore;
-   private int mNumberOfQuestions;
+    private int mScore;
+    private int mNumberOfQuestions;
 
-   public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
-   public static final String BUNDLE_STATE_SCORE = "currentScore";
-   public static final String BUNDLE_STATE_QUESTION = "currentQuestion";
+    public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
+    public static final String BUNDLE_STATE_SCORE = "currentScore";
+    public static final String BUNDLE_STATE_QUESTION = "currentQuestion";
 
-   private boolean mEnableTouchEvents;
+    private boolean mEnableTouchEvents;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

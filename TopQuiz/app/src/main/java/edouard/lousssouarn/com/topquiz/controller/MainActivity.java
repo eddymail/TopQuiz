@@ -18,19 +18,20 @@ import edouard.lousssouarn.com.topquiz.model.User;
 
 public class MainActivity extends AppCompatActivity {
 
-   private TextView mGreetingText;
-   private EditText mNameInput;
-   private Button mPlayButton;
-   private Button mScoreButton;
-   private User mUser;
+    private TextView mGreetingText;
+    private EditText mNameInput;
+    private Button mPlayButton;
+    private Button mScoreButton;
+    private User mUser;
 
-   public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
-   public static final int SCORE_ACTIVITY_REQUEST_CODE = 26;
-   private SharedPreferences mPreferences;
 
-   public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
-   public static final String PREF_KEY_FIRSTNAME = "PREF_KEY_FIRSTNAME";
+    public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
+    public static final int SCORE_ACTIVITY_REQUEST_CODE = 26;
+    private SharedPreferences mPreferences;
 
+    public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
+    public static final String PREF_KEY_FIRSTNAME = "PREF_KEY_FIRSTNAME";
+    public static final String BUNDLE_EXTRA_FIRSTNAME = "BUNDLE_EXTRA_FIRSTNAME";
 
 
     @Override
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("MainActivity::onCreate");
 
         mUser = new User();
+
 
         mPreferences = getPreferences(MODE_PRIVATE);
 
@@ -78,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
                 mPreferences.edit().putString(PREF_KEY_FIRSTNAME, mUser.getFirstname()).apply();
 
+                Intent intent = new Intent();
+                intent.putExtra(BUNDLE_EXTRA_FIRSTNAME, firstname);
+                setResult(RESULT_OK, intent);
+
                 Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
                 startActivityForResult(gameActivityIntent,GAME_ACTIVITY_REQUEST_CODE );
 
@@ -88,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
         mScoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*Intent scoreActivityIntent = new Intent(MainActivity.this, ScoreActivity.class);
+                startActivityForResult(scoreActivityIntent,SCORE_ACTIVITY_REQUEST_CODE);
+                */
                 Intent scoreActivityIntent = new Intent(MainActivity.this, ScoreActivity.class);
                 startActivity(scoreActivityIntent);
             }
@@ -104,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
             int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
 
             mPreferences.edit().putInt(PREF_KEY_SCORE,score).apply();
+
+            mUser.setScore(score);
 
             greetUser();
         }
@@ -125,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
             mScoreButton.setVisibility(View.VISIBLE); //To set visible
 
         }
+
     }
     @Override
     protected void onStart() {

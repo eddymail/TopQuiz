@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".model.Ranking"></activity>
+        <activity android:name=".model.MyAdapter"></activity>
         <activity android:name=".controller.ScoreActivity" />
         <activity android:name=".model.QuestionBank" />
         <activity android:name=".model.Question" />

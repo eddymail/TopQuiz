@@ -1,103 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".controller.ScoreActivity">
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/activity_score_order_number_btn"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="50dp"
         android:layout_margin="5dp"
-        android:layout_weight="1"
-        android:textColor="@color/colorAccent"
         android:background="@android:color/white"
-        android:textSize="10sp"
-        android:text="Classement +/-"/>
+        android:text="Classement +/-"
+        android:textColor="@color/colorAccent"
+        android:textSize="10sp" />
 
     <Button
         android:id="@+id/activity_score_order_name_btn"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="50dp"
         android:layout_margin="5dp"
-        android:layout_weight="1"
         android:textColor="@color/colorAccent"
         android:background="@android:color/white"
         android:textSize="10sp"
         android:text="Classement A/Z"/>
 
-    <TextView
-        android:id="@+id/activity_score_player1_text"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/myRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:text="first player"></TextView>
-    <TextView
-        android:id="@+id/activity_score_player2_text"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:text="second player"></TextView>
-    <TextView
-        android:id="@+id/activity_score_player3_text"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:text="third player"></TextView>
-    <TextView
-        android:id="@+id/activity_score_player4_text"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:text="fourth player"></TextView>
-    <TextView
-        android:id="@+id/activity_score_player5_text"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:text="fifth player"></TextView>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
