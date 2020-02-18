@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private Button mScoreButton;
     private User mUser;
 
-
     public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
     public static final int SCORE_ACTIVITY_REQUEST_CODE = 26;
     private SharedPreferences mPreferences;
@@ -32,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
     public static final String PREF_KEY_FIRSTNAME = "PREF_KEY_FIRSTNAME";
     public static final String BUNDLE_EXTRA_FIRSTNAME = "BUNDLE_EXTRA_FIRSTNAME";
+
 
 
     @Override
@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("MainActivity::onCreate");
 
         mUser = new User();
-
 
         mPreferences = getPreferences(MODE_PRIVATE);
 
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 setResult(RESULT_OK, intent);
 
                 Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
-                startActivityForResult(gameActivityIntent,GAME_ACTIVITY_REQUEST_CODE );
+                startActivityForResult(gameActivityIntent,GAME_ACTIVITY_REQUEST_CODE);
 
             }
 
@@ -94,11 +93,9 @@ public class MainActivity extends AppCompatActivity {
         mScoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent scoreActivityIntent = new Intent(MainActivity.this, ScoreActivity.class);
-                startActivityForResult(scoreActivityIntent,SCORE_ACTIVITY_REQUEST_CODE);
-                */
                 Intent scoreActivityIntent = new Intent(MainActivity.this, ScoreActivity.class);
-                startActivity(scoreActivityIntent);
+                startActivityForResult(scoreActivityIntent,SCORE_ACTIVITY_REQUEST_CODE);
+
             }
         });
 

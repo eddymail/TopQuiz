@@ -10,6 +10,10 @@ public class User  {
         mScore = score;
     }
 
+    public User() {
+
+    }
+
     public String getFirstname() {
         return mFirstname;
     }
